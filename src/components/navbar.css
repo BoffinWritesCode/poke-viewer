@@ -1,0 +1,13 @@
+.navigation-bar {
+    display: flex;
+    flex-direction: row;
+    padding: 4px;
+    height: 48px;
+    box-sizing: border-box;
+    background-color: black;
+    transition: background-color 0.2s;
+}
+
+.light-theme .navigation-bar {
+    background-color: white;
+}

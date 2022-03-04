@@ -1,5 +1,6 @@
-import './app.css';
-import NavBar from './navbar.js';
+import React from "react";
+import "./app.css";
+import NavBar from "./components/navbar.js";
 
 /*
 Notes:
@@ -14,12 +15,27 @@ So the app itself is going to be:
   in the pokedex.
 */
 
-function App() {
-  return (
-    <div className="app">
-        <NavBar />
-    </div>
-  );
+function preload(urls) {
+    for (let i = 0; i < urls.length; i++) {
+        new Image().src = urls[i]
+    }
+}
+
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        preload([
+            "img/bg-dark.jpg",
+            "img/bg-light.jpg"
+        ]);
+    }
+    render() {
+        return (
+            <div className="app">
+                <NavBar />
+            </div>
+        );
+    }
 }
 
 export default App;
