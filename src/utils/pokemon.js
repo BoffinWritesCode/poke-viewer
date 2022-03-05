@@ -9,6 +9,11 @@ class Pokedex {
     addUpdateCallback(callback) {
         this.callbacks.push(callback);
     }
+    removeUpdateCallback(callback) {
+        let index = this.callbacks.findIndex(cb => cb == callback);
+        if (index < 0) return;
+        this.callbacks = this.callbacks.splice(index, 1);
+    }
     addPokemon(pokemon) {
         // pokemon are stored by their id and name.
         this.data[pokemon.data.id] = pokemon;
