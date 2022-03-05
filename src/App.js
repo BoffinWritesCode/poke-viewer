@@ -1,7 +1,7 @@
 import React from "react";
 import "./app.css";
 import NavBar from "./components/navbar.js";
-import { loadPokemon } from "./utils/api.js";
+import { loadPokemon } from "./utils/pokemon.js";
 
 /*
 Notes:
