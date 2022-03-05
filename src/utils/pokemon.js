@@ -93,7 +93,7 @@ information to cache:
 
 */
 
-export async function loadAndDisplayPokemon() {
+export async function loadPokemon() {
     pokedex = new Pokedex();
 
     let response = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=2000')
