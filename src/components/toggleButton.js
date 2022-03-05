@@ -4,15 +4,16 @@ import React from 'react';
 class ToggleButton extends React.Component {
     constructor(props) {
         super(props);
-        // state contains whether the button is activated and the icon
-        this.state = {
-            acivated: false,
-            icon: props.onIcon
-        };
         // some extra data to store
         this.toggleFunction = props.toggleFunction;
         this.onIcon = props.onIcon;
         this.offIcon = props.offIcon;
+        // state contains whether the button is activated and the icon
+        const activated = props.activated ?? false;
+        this.state = {
+            activated: activated,
+            icon: activated ? this.offIcon : this.onIcon
+        };
         // bind the toggle function so "this" is recognised
         this.toggle = this.toggle.bind(this);
     }

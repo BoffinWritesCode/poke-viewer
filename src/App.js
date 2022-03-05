@@ -1,6 +1,7 @@
 import React from "react";
 import "./app.css";
 import NavBar from "./components/navbar.js";
+import Stage from "./components/stage.js";
 import { loadPokemon } from "./utils/pokemon.js";
 
 /*
@@ -23,20 +24,7 @@ So the app itself is going to be:
   - then load all of their information, if possible strip any unnecessary info
 */
 
-function preloadImages(urls) {
-    for (let i = 0; i < urls.length; i++) {
-        new Image().src = urls[i]
-    }
-}
-preloadImages([
-    "img/bg-dark.jpg",
-    "img/bg-light.jpg"
-]);
-
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     componentDidMount() {
         loadPokemon();
     }
@@ -44,6 +32,7 @@ class App extends React.Component {
         return (
             <div className="app">
                 <NavBar />
+                <Stage />
             </div>
         );
     }

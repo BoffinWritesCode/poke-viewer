@@ -1,4 +1,4 @@
-.navigation-bar {
+.labelled-icon-box {
     display: flex;
     flex-direction: row;
     padding: 4px;
@@ -7,6 +7,9 @@
     transition: background-color 0.2s;
 }
 
-.light-theme .navigation-bar {
+.labelled-icon-box img {
+}
+
+.light-theme .labelled-icon-box {
     background-color: white;
 }

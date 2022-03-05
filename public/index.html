@@ -27,6 +27,12 @@
     <title>React App</title>
   </head>
   <body>
+    <script>
+        // critical code to ensure there's no flickering
+        const theme = localStorage.getItem('theme') || 'dark';
+        localStorage.setItem('theme', theme);
+        if (theme === 'light') document.body.classList.add("light-theme");
+    </script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--

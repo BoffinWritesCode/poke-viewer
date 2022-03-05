@@ -1,10 +1,32 @@
 import localforage from "localforage";
+import ReactDOM from 'react-dom';
 
 class Pokedex {
+    callbacks = [];
+    dataById = {};
+    dataByName = {};
+    #count = 0;
+    addUpdateCallback(callback) {
+        this.callbacks.push(callback);
+    }
     addPokemon(pokemon) {
-        if (!this.data) this.data = [];
+        // pokemon are stored by their id and name.
+        this.data[pokemon.data.id] = pokemon;
+        this.data[pokemon.data.name] = pokemon;
+        this.#count++;
 
-        this.data.push(pokemon);
+        for (const callback of this.callbacks) {
+            callback(pokemon);
+        }
+    }
+    getTotalPokemon() {
+        return this.#count;
+    }
+    getPokemonById(id) {
+        return this.data[id];
+    }
+    getPokemonByName(name) {
+        return this.data[name];
     }
 }
 
@@ -52,7 +74,7 @@ class Pokemon {
     }
 }
 
-var pokedex = new Pokedex();
+export var pokedex;
 
 /*
 information to cache:
@@ -66,7 +88,9 @@ information to cache:
 
 */
 
-export async function loadPokemon() {
+export async function loadAndDisplayPokemon() {
+    pokedex = new Pokedex();
+
     let response = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=2000')
     let json = await response.json();
 
@@ -78,6 +102,4 @@ export async function loadPokemon() {
 
         pokedex.addPokemon(pokemon);
     }));
-
-    console.log(pokedex);
 }

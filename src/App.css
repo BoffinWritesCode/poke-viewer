@@ -1,3 +1,6 @@
 .app {
-  text-align: center;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 48px calc(100vh - 96px) 48px;
+    gap: 0px 0px;
 }

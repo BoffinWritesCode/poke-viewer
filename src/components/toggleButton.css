@@ -5,11 +5,12 @@
     justify-content: center;
     color: white;
     width: 40px;
-    border-radius: 10%;
-    transition: background-color 0.2s, color 0.2s;
+    border-radius: 2px;
+    transition: background-color 0.2s, color 0.2s, border-radius 0.2s;
 }
 
 .toggle-button:hover {
+    border-radius: 8px;
     background-color: rgb(30, 30, 30);
 }
 
