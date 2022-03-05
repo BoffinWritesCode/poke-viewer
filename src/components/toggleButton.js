@@ -17,11 +17,13 @@ class ToggleButton extends React.Component {
         this.toggle = this.toggle.bind(this);
     }
     toggle() {
+        // set the state, then once it's changed, call the toggle function
         this.setState({
             activated: !this.state.activated,
-            icon: !this.state.activated ? this.onIcon : this.offIcon
+            icon: !this.state.activated ? this.offIcon : this.onIcon
+        }, () => {
+            this.toggleFunction(this.state.activated);
         });
-        this.toggleFunction(this.state.activated);
     }
     render() {
         return (<div className='toggle-button' onClick={this.toggle}>
