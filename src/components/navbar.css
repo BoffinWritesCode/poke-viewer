@@ -1,6 +1,7 @@
 .navigation-bar {
     display: flex;
     flex-direction: row;
+    justify-content: right;
     padding: 4px;
     box-sizing: border-box;
     background-color: rgb(10, 10, 10);

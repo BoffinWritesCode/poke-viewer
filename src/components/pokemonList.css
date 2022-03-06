@@ -15,10 +15,6 @@
     background-color: rgb(240, 240, 240);
 }
 
-.pokemon-list-item-no-img {
-    padding-left: 32px;
-}
-
 #pokemon-list::-webkit-scrollbar {
     width: 8px;
 }
