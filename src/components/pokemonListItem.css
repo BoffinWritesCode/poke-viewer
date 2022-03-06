@@ -14,7 +14,7 @@
     border-color: rgb(80, 80, 80);
     background-color: rgb(10, 10, 10);
     color: white;
-    transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out, border-color 0.1s ease-in-out;
+    transition: background-color 0.1s, color 0.1s, border-color 0.1s;
     margin: 2px 4px 2px 4px;
 }
 

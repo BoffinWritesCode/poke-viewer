@@ -5,3 +5,28 @@
 .horizontal-list {
     overflow: scroll hidden;
 }
+
+.vertical-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.vertical-list::-webkit-scrollbar-track {
+    margin: 4px 0px 4px 0px;
+    border-radius: 4px;
+    background-color: rgb(0, 0, 0, 0.7);
+    transition: background-color 0.1s;
+}
+
+.vertical-list::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgb(70, 70, 70);
+    transition: background-color 0.1s;
+}
+
+.light-theme .vertical-list::-webkit-scrollbar-track {
+    background-color: rgb(255, 255, 255, 0.7);
+}
+
+.light-theme .vertical-list::-webkit-scrollbar-thumb {
+    background-color: rgb(180, 180, 180);
+}

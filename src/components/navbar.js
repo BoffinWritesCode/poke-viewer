@@ -9,6 +9,7 @@ class NavBar extends React.Component {
         return (
             <div className="navigation-bar">
                 <ToggleButton 
+                    tooltip="Change Theme"
                     offIcon={<FaSun size={26}/>} 
                     onIcon={<FaMoon size={26}/>} 
                     toggleFunction={(activated) => {

@@ -1,38 +1,19 @@
 #pokemon-list {
+    display: grid;
+    grid-template-rows: 64px 1fr;
     background-color: rgb(25, 25, 25);
-    transition: background-color 0.1s ease-in-out;
-}
-
-#pokemon-list > :first-child {
-    margin-top: 4px;
-}
-
-#pokemon-list > :last-child {
-    margin-bottom: 4px;
+    transition: background-color 0.1s;
+    overflow: hidden;
 }
 
 .light-theme #pokemon-list {
     background-color: rgb(240, 240, 240);
 }
 
-#pokemon-list::-webkit-scrollbar {
-    width: 8px;
+#pokemon-list .vertical-list {
+    margin-bottom: 8px;
 }
 
-#pokemon-list::-webkit-scrollbar-track {
-    background-color: rgb(0, 0, 0, 0.7);
-    transition: background-color 0.1s ease-in-out;
-}
-
-#pokemon-list::-webkit-scrollbar-thumb {
-    background-color: rgb(70, 70, 70);
-    transition: background-color 0.1s ease-in-out;
-}
-
-.light-theme #pokemon-list::-webkit-scrollbar-track {
-    background-color: rgb(255, 255, 255, 0.7);
-}
-
-.light-theme #pokemon-list::-webkit-scrollbar-thumb {
-    background-color: rgb(180, 180, 180);
+.display-none {
+    display: none !important;
 }

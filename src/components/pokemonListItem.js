@@ -5,7 +5,8 @@ class PokemonListItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selected: false
+            selected: false,
+            visible: props.visible
         };
         this.icon = props.icon;
         this.label = props.label;
@@ -13,19 +14,22 @@ class PokemonListItem extends React.Component {
         this.listParent = props.parent;
         this.onClicked = this.onClicked.bind(this);
         this.setSelected = this.setSelected.bind(this);
+        this.mainDivRef = React.createRef();
     }
     onClicked() {
         this.listParent.setSelected(this);
     }
     setSelected(value) {
+        let visible = value ? true : !this.mainDivRef.current.classList.contains("display-none");
         this.setState({
-            selected: value
+            selected: value,
+            visible: visible
         });
     }
     render() {
         const img = this.icon ? <img src={this.icon} /> : "";
         return (
-            <div onClick={this.onClicked} className={`pokemon-list-item ${this.state.selected ? 'pokemon-list-item-selected' : ''}`}>
+            <div ref={this.mainDivRef} onClick={this.onClicked} className={`pokemon-list-item ${this.state.selected ? 'pokemon-list-item-selected' : ''} ${this.state.visible ? '' : 'display-none'}`}>
                 {img}
                 <label className={this.icon ? "" : "pokemon-list-item-no-img"}>{this.label}</label>
             </div>
