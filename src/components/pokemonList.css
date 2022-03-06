@@ -1,0 +1,16 @@
+#pokemon-list {
+    background-color: rgb(15, 15, 15);
+    transition: background-color 0.2s ease-in-out;
+}
+
+#pokemon-list > :first-child {
+    margin-top: 4px;
+}
+
+#pokemon-list > :last-child {
+    margin-bottom: 4px;
+}
+
+.light-theme #pokemon-list {
+    background-color: rgb(245, 245, 245);
+}

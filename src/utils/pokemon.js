@@ -1,11 +1,15 @@
 import localforage from "localforage";
-import ReactDOM from 'react-dom';
 
 class Pokedex {
     callbacks = [];
     dataById = {};
     dataByName = {};
     #count = 0;
+    clear() {
+        this.dataById = {};
+        this.dataByName = {};
+        this.#count = 0;
+    }
     addUpdateCallback(callback) {
         this.callbacks.push(callback);
     }
@@ -16,8 +20,8 @@ class Pokedex {
     }
     addPokemon(pokemon) {
         // pokemon are stored by their id and name.
-        this.data[pokemon.data.id] = pokemon;
-        this.data[pokemon.data.name] = pokemon;
+        this.dataById[pokemon.data.id] = pokemon;
+        this.dataByName[pokemon.data.name] = pokemon;
         this.#count++;
 
         for (const callback of this.callbacks) {
@@ -27,11 +31,15 @@ class Pokedex {
     getTotalPokemon() {
         return this.#count;
     }
+    getPokemonArray() {
+        const sorted = Object.keys(this.dataById).map((key) => parseInt(key)).sort();
+        return sorted.map((key) => this.dataById[key]);
+    }
     getPokemonById(id) {
-        return this.data[id];
+        return this.dataById[id];
     }
     getPokemonByName(name) {
-        return this.data[name];
+        return this.dataByName[name];
     }
 }
 
@@ -51,7 +59,7 @@ class Pokemon {
             // get the basic info
             data.height = json.height;
             data.weight = json.weight;
-            data.id = json.id;
+            data.id = parseInt(json.id);
             data.name = json.name;
             // get all stats
             data.stats = [];
@@ -63,7 +71,9 @@ class Pokemon {
             }
             // get the sprite, aim for official art if it exists, otherwise game art
             let official_art = json.sprites.other?.["official-artwork"]?.front_default;
-            data.sprite = official_art || json.sprites["front-default"];
+            data.sprite = official_art || json.sprites.front_default;
+            // set the icon to use
+            data.icon = json.sprites.front_default;
             
             localforage.setItem(this.ref_name, data, (value) => {
             }).catch((reason) => {
@@ -79,7 +89,7 @@ class Pokemon {
     }
 }
 
-export var pokedex;
+export var pokedex = new Pokedex();
 
 /*
 information to cache:
@@ -94,7 +104,7 @@ information to cache:
 */
 
 export async function loadPokemon() {
-    pokedex = new Pokedex();
+    pokedex.clear();
 
     let response = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=2000')
     let json = await response.json();

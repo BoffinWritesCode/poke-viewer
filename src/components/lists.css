@@ -1,0 +1,7 @@
+.vertical-list {
+    overflow: hidden scroll;
+}
+
+.horizontal-list {
+    overflow: scroll hidden;
+}
