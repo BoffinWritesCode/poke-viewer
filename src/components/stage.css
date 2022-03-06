@@ -4,7 +4,7 @@
     grid-template-rows: 100%; 
     gap: 0px 0px; 
     background-color: rgb(25, 25, 25);
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.1s ease-in-out;
 }
 
 .light-theme .stage {

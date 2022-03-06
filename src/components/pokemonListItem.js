@@ -13,7 +13,7 @@ class PokemonListItem extends React.Component {
         return (
             <div className={'pokemon-list-item'}>
                 {img}
-                <label>{this.label}</label>
+                <label className={this.icon ? "" : "pokemon-list-item-no-img"}>{this.label}</label>
             </div>
         );
     }

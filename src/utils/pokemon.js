@@ -60,7 +60,7 @@ class Pokemon {
             data.height = json.height;
             data.weight = json.weight;
             data.id = parseInt(json.id);
-            data.name = json.name;
+            data.name = json.name[0].toUpperCase() + json.name.substr(1);
             // get all stats
             data.stats = [];
             for (const stat of json.stats) {

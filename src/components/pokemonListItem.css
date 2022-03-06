@@ -1,16 +1,21 @@
 .pokemon-list-item {
     display: inline-flex;
-    column-gap: 2px;
+    column-gap: 8px;
     height: 32px;
-    width: 100%;
+    width: calc(100% - 8px);
     flex-direction: row;
     padding: 4px;
     box-sizing: border-box;
+    border-radius: 8px;
 
     background-color: rgb(10, 10, 10);
     color: white;
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-    margin: 2px 0px 2px 0px;
+    transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+    margin: 2px 4px 2px 4px;
+}
+
+.pokemon-list-item label {
+    font-weight: 500;
 }
 
 .light-theme .pokemon-list-item {
