@@ -7,31 +7,15 @@ import SearchBar from './searchBar';
 
 class PokemonList extends React.Component {
     #callback;
-    #selectedChild;
     #currentSearch;
-    values = [];
+    pokemon = [];
+    listItems = []
     constructor(props) {
         super(props);
-        this.state = {
-            values: []
-        };
         this.display = props.display;
-        this.clearSelected = this.clearSelected.bind(this);
-        this.setSelected = this.setSelected.bind(this);
         this.searchBarUpdated = this.searchBarUpdated.bind(this);
         this.updateList = this.updateList.bind(this);
         this.listRef = React.createRef();
-    }
-    clearSelected() {
-        this.#selectedChild = undefined;
-    }
-    setSelected(child) {
-        if (this.#selectedChild) {
-            this.#selectedChild.setSelected(false);
-        }
-        this.#selectedChild = child;
-        this.display.setSelected(child.id);
-        this.#selectedChild.setSelected(true);
     }
     searchBarUpdated(search) {
         this.#currentSearch = search.toLowerCase();
@@ -39,37 +23,40 @@ class PokemonList extends React.Component {
         // loop through all child elements, remove/add display-none class based on whether they match the search
         const list = this.listRef.current;
         for (let i = 0; i < list.children.length; i++) {
-            let visible = this.values[i].key.indexOf(this.#currentSearch) !== -1;
+            let visible = this.pokemon[i].ref_name.indexOf(this.#currentSearch) !== -1;
             if (!visible) list.children[i].classList.add("display-none");
             else list.children[i].classList.remove("display-none");
         }
     }
     updateList() {
         this.setState({
-            values: this.values
+            values: this.pokemon
         });
+    }
+    generateItem(pokemon, selected) {
+        let visible = this.#currentSearch ? pokemon.ref_name.indexOf(this.#currentSearch) !== -1 : true;
+        return <PokemonListItem selected={selected} visible={visible} key={pokemon.ref_name} display={this.display} id={pokemon.data.id} icon={pokemon.data.icon} label={pokemon.data.name} stylingClass="pokemon-list-item" />;
     }
     componentDidMount() {
         // dont add callback if it's already been added
         if (this.#callback) return;
 
         this.#callback = (pokemon) => {
-            // create a new list item
-            let visible = this.#currentSearch ? pokemon.ref_name.indexOf(this.#currentSearch) !== -1 : true;
-            const newBox = <PokemonListItem visible={visible} key={pokemon.ref_name} parent={this} id={pokemon.data.id} icon={pokemon.data.icon} label={pokemon.data.name} stylingClass="pokemon-list-item" />;
             
             // find the first index at which the new id is less, and insert it at that point in the list.
             let i = 0;
-            while (i < this.values.length) {
-                if (pokemon.data.id < this.values[i].props.id) {
-                    this.values.splice(i, 0, newBox);
+            while (i < this.pokemon.length) {
+                if (pokemon.data.id < this.pokemon[i].data.id) {
+                    this.pokemon.splice(i, 0, pokemon);
                     break;
                 }
                 i++;
             }
-            if (i == this.values.length) {
-                this.values.push(newBox);
+            if (i == this.pokemon.length) {
+                this.pokemon.push(pokemon);
             }
+
+            this.listItems.push(this.generateItem(pokemon, false));
 
             this.updateList();
         };
@@ -81,13 +68,27 @@ class PokemonList extends React.Component {
         pokedex.removeUpdateCallback(this.#callback);
         this.#callback = undefined;
     }
+    componentDidUpdate(props) {
+        // if our selected value changed, generate new item in our cached array and re-render
+        if (this.props.selected != props.selected) {
+            for (let i = 0; i < this.listItems.length; i++) {
+                if (this.pokemon[i].data.id === props.selected) {
+                    this.listItems[i] = this.generateItem(this.pokemon[i], false);
+                }
+                else if (this.pokemon[i].data.id === this.props.selected) {
+                    this.listItems[i] = this.generateItem(this.pokemon[i], true);
+                }
+            }
+            this.setState({});
+        }
+    }
     render() {
         return (
             <div id="pokemon-list" >
                 <div id="pokemon-list-search-area">
                     <SearchBar inputCallback={this.searchBarUpdated}/>
                 </div>
-                <VerticalList ref={this.listRef} values={this.state.values}/>
+                <VerticalList ref={this.listRef} values={this.listItems}/>
             </div>
         );
     }

@@ -17,10 +17,9 @@ class PokemonDisplay extends React.Component {
         });
     }
     render() {
-        console.log(this.state.selectedId);
         return (
             <div className='pokemon-display'>
-                <PokemonList display={this}/>
+                <PokemonList selected={this.state.selectedId} display={this}/>
                 <Stage selected={this.state.selectedId} display={this}/>
             </div>
         );

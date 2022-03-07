@@ -6,6 +6,7 @@ class Pokedex {
     callbacks = [];
     dataById = {};
     dataByName = {};
+    #highestID = -1;
     #count = 0;
     clear() {
         this.dataById = {};
@@ -23,6 +24,9 @@ class Pokedex {
     addPokemon(pokemon) {
         // pokemon are stored by their id and name.
         this.dataById[pokemon.data.id] = pokemon;
+        if (pokemon.data.id > this.#highestID) {
+            this.#highestID = pokemon.data.id;
+        }
         this.dataByName[pokemon.data.name] = pokemon;
         this.#count++;
 
@@ -32,6 +36,9 @@ class Pokedex {
     }
     getTotalPokemon() {
         return this.#count;
+    }
+    getMaxID() {
+        return this.#highestID;
     }
     getPokemonArray() {
         const sorted = Object.keys(this.dataById).map((key) => parseInt(key)).sort();
@@ -73,8 +80,11 @@ class Pokemon {
             }
             // get the sprite, aim for official art if it exists, otherwise game art
             let official_art = json.sprites.other?.["official-artwork"]?.front_default;
-            data.sprite = (official_art || json.sprites.front_default);
+            data.sprite = (official_art || json.sprites.front_default || json.sprites.other?.home?.front_default || json.sprites.versions?.["generation-vii"]?.["ultra-sun-ultra-moon"]?.front_default);
             if (data.sprite) data.sprite = data.sprite.substr(imageUrlPath.length);
+            else {
+                return false;
+            }
             // set the icon to use
             data.icon = json.sprites.front_default;
             if (data.icon) data.icon = data.icon.substr(imageUrlPath.length);
@@ -90,6 +100,7 @@ class Pokemon {
         }
 
         this.data = data;
+        return true;
     }
 }
 
@@ -107,6 +118,23 @@ information to cache:
 
 */
 
+function getAllValuesInObj(obj) {
+    let result = [];
+    for (const i in obj) {
+        // if it's an object that's not an array
+        if (!Array.isArray(obj[i]) && (typeof obj[i]) === 'object') {
+            const array = getAllValuesInObj(obj[i]);
+            for (const j in array) {
+                result.push(array[j]);
+            }
+        }
+        else {
+            result.push(obj[i]);
+        }
+    }
+    return result;
+};
+
 export function getFullUrl(urlPart) { return imageUrlPath + urlPart; }
 
 export async function loadPokemon() {
@@ -119,8 +147,8 @@ export async function loadPokemon() {
     await Promise.all(json.results.map(async (result) => {
         let pokemon = new Pokemon(result.name, result.url);
 
-        await pokemon.loadData();
+        let shouldAdd = await pokemon.loadData();
 
-        pokedex.addPokemon(pokemon);
+        if (shouldAdd) pokedex.addPokemon(pokemon);
     }));
 }
