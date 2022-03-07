@@ -1,7 +1,7 @@
 import React from "react";
 import "./app.css";
 import NavBar from "./components/navbar.js";
-import Stage from "./components/stage.js";
+import PokemonDisplay from "./components/pokemonDisplay.js";
 import { loadPokemon } from "./utils/pokemon.js";
 
 /*
@@ -32,7 +32,7 @@ class App extends React.Component {
         return (
             <div className="app">
                 <NavBar />
-                <Stage />
+                <PokemonDisplay />
             </div>
         );
     }

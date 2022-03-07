@@ -1,18 +1,18 @@
-import './stage.css';
+import './pokemonDisplay.css';
 import React from 'react';
 import PokemonList from './pokemonList';
 
-class Stage extends React.Component {
+class PokemonDisplay extends React.Component {
     constructor(props) {
         super(props);
     }
     render() {
         return (
-            <div className='stage'>
+            <div className='pokemon-display'>
                 <PokemonList />
             </div>
         );
     }
 }
 
-export default Stage;
+export default PokemonDisplay;
