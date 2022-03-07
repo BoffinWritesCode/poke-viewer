@@ -1,5 +1,6 @@
 import './pokemonListItem.css';
 import React from 'react';
+import { getFullUrl } from '../utils/pokemon'
 
 class PokemonListItem extends React.Component {
     constructor(props) {
@@ -27,7 +28,7 @@ class PokemonListItem extends React.Component {
         });
     }
     render() {
-        const img = this.icon ? <img src={this.icon} /> : "";
+        const img = this.icon ? <img src={getFullUrl(this.icon)} /> : "";
         return (
             <div ref={this.mainDivRef} onClick={this.onClicked} className={`pokemon-list-item ${this.state.selected ? 'pokemon-list-item-selected' : ''} ${this.state.visible ? '' : 'display-none'}`}>
                 {img}

@@ -12,7 +12,7 @@
     border-style: solid;
     border-width: 0px;
     border-color: rgb(80, 80, 80);
-    background-color: rgb(10, 10, 10);
+    background-color: rgb(15, 15, 15);
     color: white;
     transition: background-color 0.1s, color 0.1s, border-color 0.1s;
     margin: 2px 4px 2px 4px;

@@ -1,5 +1,7 @@
 import localforage from "localforage";
 
+const imageUrlPath = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
+
 class Pokedex {
     callbacks = [];
     dataById = {};
@@ -71,9 +73,11 @@ class Pokemon {
             }
             // get the sprite, aim for official art if it exists, otherwise game art
             let official_art = json.sprites.other?.["official-artwork"]?.front_default;
-            data.sprite = official_art || json.sprites.front_default;
+            data.sprite = (official_art || json.sprites.front_default);
+            if (data.sprite) data.sprite = data.sprite.substr(imageUrlPath.length);
             // set the icon to use
             data.icon = json.sprites.front_default;
+            if (data.icon) data.icon = data.icon.substr(imageUrlPath.length);
             
             localforage.setItem(this.ref_name, data, (value) => {
             }).catch((reason) => {
@@ -102,6 +106,8 @@ information to cache:
 - sprite location 
 
 */
+
+export function getFullUrl(urlPart) { return imageUrlPath + urlPart; }
 
 export async function loadPokemon() {
     pokedex.clear();

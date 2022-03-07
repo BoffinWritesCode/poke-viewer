@@ -1,5 +1,5 @@
 import './pokemonList.css';
-import React, { Fragment } from 'react';
+import React, { Fragment, memo } from 'react';
 import { pokedex } from '../utils/pokemon.js';
 import { VerticalList } from './lists';
 import PokemonListItem from './pokemonListItem';
@@ -12,15 +12,14 @@ class PokemonList extends React.Component {
     values = [];
     constructor(props) {
         super(props);
-
         this.state = {
             values: []
         };
+        this.display = props.display;
         this.clearSelected = this.clearSelected.bind(this);
         this.setSelected = this.setSelected.bind(this);
         this.searchBarUpdated = this.searchBarUpdated.bind(this);
         this.updateList = this.updateList.bind(this);
-
         this.listRef = React.createRef();
     }
     clearSelected() {
@@ -31,6 +30,7 @@ class PokemonList extends React.Component {
             this.#selectedChild.setSelected(false);
         }
         this.#selectedChild = child;
+        this.display.setSelected(child.id);
         this.#selectedChild.setSelected(true);
     }
     searchBarUpdated(search) {
@@ -73,6 +73,7 @@ class PokemonList extends React.Component {
 
             this.updateList();
         };
+
         // add a callback so that the list updates every time the list of pokemon updates
         pokedex.addUpdateCallback(this.#callback);
     }

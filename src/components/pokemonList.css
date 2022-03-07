@@ -4,6 +4,7 @@
     background-color: rgb(25, 25, 25);
     transition: background-color 0.1s;
     overflow: hidden;
+    grid-area: list;
 }
 
 .light-theme #pokemon-list {

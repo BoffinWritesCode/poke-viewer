@@ -1,8 +1,11 @@
 .pokemon-display {
     display: grid;
     grid-template-columns: 300px 1fr; 
-    grid-template-rows: 100%; 
+    grid-template-rows: 50% 50%; 
     gap: 0px 0px; 
+    grid-template-areas: 
+        "list stage"
+        "list stats"; 
     background-color: rgb(25, 25, 25);
     transition: background-color 0.1s;
 }
