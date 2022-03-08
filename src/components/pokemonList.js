@@ -4,6 +4,7 @@ import { pokedex } from '../utils/pokemon.js';
 import { VerticalList } from './lists';
 import PokemonListItem from './pokemonListItem';
 import SearchBar from './searchBar';
+import { GiAllSeeingEye } from 'react-icons/gi';
 
 class PokemonList extends React.Component {
     #callback;
@@ -42,21 +43,25 @@ class PokemonList extends React.Component {
         if (this.#callback) return;
 
         this.#callback = (pokemon) => {
-            
+        
+            if (pokemon === undefined) return;
+
             // find the first index at which the new id is less, and insert it at that point in the list.
             let i = 0;
+            let spliced = false;
             while (i < this.pokemon.length) {
                 if (pokemon.data.id < this.pokemon[i].data.id) {
                     this.pokemon.splice(i, 0, pokemon);
+                    this.listItems.splice(i, 0, this.generateItem(pokemon, false));
+                    spliced = true;
                     break;
                 }
                 i++;
             }
-            if (i == this.pokemon.length) {
+            if (!spliced) {
                 this.pokemon.push(pokemon);
+                this.listItems.push(this.generateItem(pokemon, false));
             }
-
-            this.listItems.push(this.generateItem(pokemon, false));
 
             this.updateList();
         };

@@ -1,0 +1,55 @@
+.moves-box {
+    grid-area: moves;
+    margin: 0px 8px 8px 8px;
+    background-color:rgb(15, 15, 15);
+    border-radius: 16px;
+    box-shadow: 2px 2px 1px 1px rgba(0,0,0,0.1);
+}
+
+.light-theme .moves-box {
+    background-color:rgb(240, 240, 240);
+}
+
+.moves-container {
+    margin: 4px 16px 16px 16px;
+    overflow: hidden auto;
+    height: calc(100% - 56px);
+    width: calc(100% - 32px);
+}
+
+.game-select {
+    width: calc(100% - 16px);
+    margin: 8px;
+    background-color: transparent;
+    color: white;
+    outline: none;
+    border: none;
+    height: 20px;
+}
+
+.game-select option {
+    color: black;
+}
+
+.moves-table {
+    margin-right: 4px;
+    width: calc(100% - 4px);
+    color: white;
+    border-collapse: collapse;
+}
+.moves-table > tbody > tr:nth-child(odd) {
+    background-color: rgb(30, 30, 30);
+}
+
+.light-theme .moves-table > tbody > tr:nth-child(odd) {
+    background-color: rgb(230, 230, 230);
+}
+
+.moves-table > tbody > tr > td {    
+    padding: 8px;
+    width: 50%;
+}
+
+.light-theme .moves-table {
+    color: black;
+}

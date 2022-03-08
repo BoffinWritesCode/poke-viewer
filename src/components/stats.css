@@ -1,50 +1,80 @@
 .stats-box {
     grid-area: stats;
-    margin: 0px 8px 8px 8px;
+    margin: 8px 0px 8px 8px;
     background-color:rgb(15, 15, 15);
     border-radius: 16px;
     box-shadow: 2px 2px 1px 1px rgba(0,0,0,0.1);
 }
 
 .stats-container {
-    margin: 8px;
+    margin: 16px;
     overflow: hidden auto;
-    height: calc(100% - 16px);
+    height: calc(100% - 32px);
+    width: calc(100% - 32px);
 }
 
 .light-theme .stats-box {
     background-color:rgb(240, 240, 240);
 }
 
-.area-split-table {
-    margin: 16px;
-    width: calc(100% - 32px);
-    height: calc(100% - 32px);
-}
-
-.split-table-cell {
-    width: 50%;
-    vertical-align: top;
+.type-box {
+    display: inline-block;
+    margin: 2px;
+    padding: 4px 6px;
+    border-radius: 6px;
+    line-height: 16px;
+    height: 16px;
+    vertical-align: text-top;
+    color: white;
+    text-shadow: 1px 1px black;
 }
 
 .stats-table {
-    width: calc(100% - 16px);
-    border-collapse: collapse;
+    margin-right: 4px;
+    width: calc(100% - 4px);
     color: white;
+    border-collapse: collapse;
 }
 
-.stats-table tr:nth-child(odd) {
+.base-stats-table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+}
+
+.base-stats-table td {
+    padding: 2px;
+}
+
+.base-stats-table td :first-child {
+    width: 75%;
+}
+
+.base-stats-table td :last-child {
+    width: 25%;
+}
+
+.base-stats-table tr:nth-child(odd) {
+    background-color: rgb(15, 15, 15);
+}
+
+.light-theme .base-stats-table tr:nth-child(odd) {
+    background-color: rgb(240, 240, 240);
+}
+
+.stats-table > tbody > tr:nth-child(odd) {
     background-color: rgb(30, 30, 30);
 }
 
-.light-theme .stats-table tr:nth-child(odd) {
+.light-theme .stats-table > tbody > tr:nth-child(odd) {
     background-color: rgb(230, 230, 230);
 }
 
-.stats-table td {    
+.stats-table > tbody > tr > td {    
     padding: 8px;
     width: 50%;
 }
+
 .stats-table svg {
     transform: translate(-2px, 2px);
 }

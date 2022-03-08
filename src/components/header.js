@@ -1,13 +1,14 @@
-import './navbar.css';
+import './header.css';
 import { FaMoon, FaSun } from 'react-icons/fa'
 import ToggleButton from './toggleButton.js';
 import React from 'react';
 
-class NavBar extends React.Component {
+class Header extends React.Component {
     render() {
         const theme = localStorage.getItem('theme');
         return (
-            <div className="navigation-bar">
+            <div className="header">
+                <img class="logo" src={require("../img/logo.png")}/>
                 <ToggleButton 
                     tooltip="Change Theme"
                     offIcon={<FaSun size={26}/>} 
@@ -24,4 +25,4 @@ class NavBar extends React.Component {
     }
 }
 
-export default NavBar;
+export default Header;

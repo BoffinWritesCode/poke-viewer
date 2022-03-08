@@ -1,0 +1,33 @@
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    padding: 4px;
+    box-sizing: border-box;
+    background-color: rgb(10, 10, 10);
+    transition: background-color;
+    color: white;
+}
+
+.light-theme .footer {
+    background-color: white;
+}
+
+.footer-text {
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+    color: gray;
+}
+
+.progress-text {
+    margin-left: 8px;
+    font-size: 24px;
+    margin-right: auto;
+}
+
+.disclaimer {
+    margin-right: 8px;
+    font-size: 12px;
+    color: gray;
+}

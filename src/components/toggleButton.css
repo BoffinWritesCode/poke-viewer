@@ -1,6 +1,7 @@
 .toggle-button {
     display: flex;
     cursor: pointer;
+    user-select: none;
     align-items: center;
     justify-content: center;
     color: white;

@@ -1,4 +1,4 @@
-.navigation-bar {
+.header {
     display: flex;
     flex-direction: row;
     justify-content: right;
@@ -8,6 +8,11 @@
     transition: background-color;
 }
 
-.light-theme .navigation-bar {
+.light-theme .header {
     background-color: white;
+}
+
+.logo {
+    
+    margin-right: auto;
 }
