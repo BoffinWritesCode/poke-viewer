@@ -6,7 +6,7 @@
     color: white;
     width: 40px;
     border-radius: 2px;
-    transition: background-color 0.1s, color 0.1s, border-radius 0.1s;
+    transition: background-color, color, border-radius;
 }
 
 .toggle-button:hover {

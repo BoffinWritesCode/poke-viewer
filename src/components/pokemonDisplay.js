@@ -2,6 +2,7 @@ import './pokemonDisplay.css';
 import React, { createRef } from 'react';
 import PokemonList from './pokemonList';
 import Stage from './stage';
+import Stats from './stats';
 
 class PokemonDisplay extends React.Component {
     constructor(props) {
@@ -21,6 +22,7 @@ class PokemonDisplay extends React.Component {
             <div className='pokemon-display'>
                 <PokemonList selected={this.state.selectedId} display={this}/>
                 <Stage selected={this.state.selectedId} display={this}/>
+                <Stats selected={this.state.selectedId} display={this} />
             </div>
         );
     }

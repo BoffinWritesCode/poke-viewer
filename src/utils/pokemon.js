@@ -89,6 +89,20 @@ class Pokemon {
             data.icon = json.sprites.front_default;
             if (data.icon) data.icon = data.icon.substr(imageUrlPath.length);
             
+            if (json.species?.url) {
+                let speciesResponse = await fetch(json.species.url)
+                let speciesJson = await speciesResponse.json();
+
+                data.genderRate = speciesJson.gender_rate;
+                data.captureRate = speciesJson.capture_rate;
+                data.baseHappiness = speciesJson.base_happiness;
+                data.baby = speciesJson.is_baby;
+                data.legendary = speciesJson.is_legendary;
+                data.mythical = speciesJson.is_mythical;
+                data.habitat = speciesJson.habitat?.name;
+                data.shape = speciesJson.shape?.name;
+            }
+
             localforage.setItem(this.ref_name, data, (value) => {
             }).catch((reason) => {
                 console.log("failed to cache pokemon data for pokemon.");

@@ -1,0 +1,62 @@
+.stats-box {
+    grid-area: stats;
+    margin: 0px 8px 8px 8px;
+    background-color:rgb(15, 15, 15);
+    border-radius: 16px;
+    box-shadow: 2px 2px 1px 1px rgba(0,0,0,0.1);
+}
+
+.stats-container {
+    margin: 8px;
+    overflow: hidden auto;
+    height: calc(100% - 16px);
+}
+
+.light-theme .stats-box {
+    background-color:rgb(240, 240, 240);
+}
+
+.area-split-table {
+    margin: 16px;
+    width: calc(100% - 32px);
+    height: calc(100% - 32px);
+}
+
+.split-table-cell {
+    width: 50%;
+    vertical-align: top;
+}
+
+.stats-table {
+    width: calc(100% - 16px);
+    border-collapse: collapse;
+    color: white;
+}
+
+.stats-table tr:nth-child(odd) {
+    background-color: rgb(30, 30, 30);
+}
+
+.light-theme .stats-table tr:nth-child(odd) {
+    background-color: rgb(230, 230, 230);
+}
+
+.stats-table td {    
+    padding: 8px;
+    width: 50%;
+}
+.stats-table svg {
+    transform: translate(-2px, 2px);
+}
+
+.light-theme .stats-table {
+    color: black;
+}
+
+.border-right {
+    border-right: 2px solid rgb(255, 255, 255, 0.1);
+}
+
+.light-theme .border-right {
+    border-right: 2px solid rgb(0, 0, 0, 0.1);
+}

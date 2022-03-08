@@ -7,7 +7,7 @@
         "list stage"
         "list stats"; 
     background-color: rgb(25, 25, 25);
-    transition: background-color 0.1s;
+    transition: background-color;
 }
 
 .light-theme .pokemon-display {

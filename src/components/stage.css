@@ -53,12 +53,30 @@
     font-family: Helvetica, sans-serif;
     font-size: 48px;
     border: none;
-    transition: font-size 0.1s;
+    transition: font-size 0.05s ease-out, color 0.05s ease-out;
     color: rgba(255, 255, 255, 0.2);
+}
+
+.light-theme .stage-arrow {
+    color: rgba(0, 0, 0, 0.2);
 }
 
 .stage-arrow:hover {
     font-size: 54px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.light-theme .stage-arrow:hover {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.stage-arrow:active {
+    font-size: 40px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.light-theme .stage-arrow:active {
+    color: rgba(0, 0, 0, 0.4);
 }
 
 .stage-left {
