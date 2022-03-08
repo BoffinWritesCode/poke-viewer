@@ -12,19 +12,25 @@ class PokemonDisplay extends React.Component {
             selectedId: -1
         };
         this.setSelected = this.setSelected.bind(this);
+        this.listRef = React.createRef();
     }
     setSelected(id) {
         this.setState({
             selectedId: id
         });
+        // mobile-only
+        this.listRef?.current?.forceListDisable();
+    }
+    toggleList() {
+        this.listRef.current?.toggleList();
     }
     render() {
         return (
             <div className='pokemon-display'>
-                <PokemonList selected={this.state.selectedId} display={this}/>
                 <Stage selected={this.state.selectedId} display={this} />
                 <Stats selected={this.state.selectedId} display={this} />
                 <Moves selected={this.state.selectedId} display={this} />
+                <PokemonList ref={this.listRef} selected={this.state.selectedId} display={this}/>
             </div>
         );
     }

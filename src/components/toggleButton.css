@@ -22,3 +22,13 @@
 .light-theme .toggle-button:hover {
     background-color: rgb(220, 220, 220);
 }
+
+.mobile-only {
+    display: none;
+}
+
+@media only screen and (max-width: 1060px) {
+    .mobile-only {
+        display: flex;
+    }
+}

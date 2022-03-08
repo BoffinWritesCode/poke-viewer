@@ -53,7 +53,7 @@ class Moves extends React.Component {
                         if (move.method === "levelup") {
                             method = `Lvl. ${move.learnedAt}`
                         }
-                        return <tr key={`${move.name}|${move.method}`}>
+                        return <tr key={`${move.name}|${move.method}|${move.learnedAt}`}>
                             <td>
                                 {capitaliseAllWords(move.name.replaceAll("-", " "))}
                             </td>

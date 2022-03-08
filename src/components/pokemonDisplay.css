@@ -1,5 +1,6 @@
 .pokemon-display {
     display: grid;
+    position: relative;
     grid-template-columns: 400px 1fr 1fr; 
     grid-template-rows: 50% 50%; 
     gap: 0px 0px; 
@@ -12,4 +13,15 @@
 
 .light-theme .pokemon-display {
     background-color: rgb(230, 230, 230);
+}
+
+@media only screen and (max-width: 1060px) {
+    .pokemon-display {
+        grid-template-columns: 0px 1fr;
+        grid-template-rows: calc(50vh - 96px) 50vh 50vh; 
+        grid-template-areas: 
+            "list stage"
+            "list stats"
+            "list moves"; 
+    }
 }

@@ -26,14 +26,18 @@ So the app itself is going to be:
 */
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.displayRef = React.createRef();
+    }
     componentDidMount() {
         loadPokemon();
     }
     render() {
         return (
             <div className="app">
-                <Header />
-                <PokemonDisplay />
+                <Header displayRef={this.displayRef} />
+                <PokemonDisplay ref={this.displayRef} />
                 <Footer />
             </div>
         );

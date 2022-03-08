@@ -16,7 +16,10 @@ class PokemonList extends React.Component {
         this.display = props.display;
         this.searchBarUpdated = this.searchBarUpdated.bind(this);
         this.updateList = this.updateList.bind(this);
+        this.toggleList = this.toggleList.bind(this);
+        this.forceListDisable = this.forceListDisable.bind(this);
         this.listRef = React.createRef();
+        this.divRef = React.createRef();
     }
     searchBarUpdated(search) {
         this.#currentSearch = search.toLowerCase();
@@ -27,6 +30,21 @@ class PokemonList extends React.Component {
             let visible = this.pokemon[i].ref_name.indexOf(this.#currentSearch) !== -1;
             if (!visible) list.children[i].classList.add("display-none");
             else list.children[i].classList.remove("display-none");
+        }
+    }
+    toggleList() {
+        const element = this.divRef.current;
+        if (element.classList.contains('selected')) {
+            element.classList.remove('selected');
+        }
+        else {
+            element.classList.add('selected');
+        }
+    }
+    forceListDisable() {
+        const element = this.divRef.current;
+        if (element.classList.contains('selected')) {
+            element.classList.remove('selected');
         }
     }
     updateList() {
@@ -89,7 +107,7 @@ class PokemonList extends React.Component {
     }
     render() {
         return (
-            <div id="pokemon-list" >
+            <div ref={this.divRef} id="pokemon-list" >
                 <div id="pokemon-list-search-area">
                     <SearchBar inputCallback={this.searchBarUpdated}/>
                 </div>

@@ -90,3 +90,9 @@
 .light-theme .border-right {
     border-right: 2px solid rgb(0, 0, 0, 0.1);
 }
+
+@media only screen and (max-width: 1060px) {
+    .stats-box {
+        margin: 0px 8px 8px 8px;
+    }
+}

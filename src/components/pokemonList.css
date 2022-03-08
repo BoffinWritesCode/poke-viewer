@@ -18,3 +18,17 @@
 .display-none {
     display: none !important;
 }
+
+@media only screen and (max-width: 1060px) {
+    #pokemon-list {
+        position: sticky;
+        top: 0;
+        left: 0;
+        width: 0px;
+        height: 100vh;
+        transition: width 0.25s ease-in-out;
+    }
+    #pokemon-list.selected {
+        width: 300px;
+    }
+}

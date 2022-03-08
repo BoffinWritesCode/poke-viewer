@@ -5,6 +5,7 @@ class ToggleButton extends React.Component {
     constructor(props) {
         super(props);
         // some extra data to store
+        this.mobileOnly = props.mobileOnly;
         this.tooltip = props.tooltip;
         this.toggleFunction = props.toggleFunction;
         this.onIcon = props.onIcon;
@@ -28,7 +29,7 @@ class ToggleButton extends React.Component {
         });
     }
     render() {
-        return (<div title={this.tooltip} className='toggle-button' onClick={this.toggle}>
+        return (<div title={this.tooltip} className={`toggle-button ${this.mobileOnly ? 'mobile-only' : ''}`} onClick={this.toggle}>
             {this.state.icon}
         </div>);
     }

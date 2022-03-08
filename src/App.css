@@ -4,3 +4,9 @@
     grid-template-rows: 48px calc(100vh - 96px) 48px;
     gap: 0px 0px;
 }
+
+@media only screen and (max-width: 1060px) {
+    .app{
+        grid-template-rows: 48px calc(150vh - 96px) 48px;
+    }
+}
